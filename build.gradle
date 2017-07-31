@@ -5,9 +5,12 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
+        maven {
+            url  "http://estimote.bintray.com/android"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -15,6 +18,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url  "http://estimote.bintray.com/android"
+        }
     }
 }
 

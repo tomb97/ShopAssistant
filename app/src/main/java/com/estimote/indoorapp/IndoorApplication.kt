@@ -24,7 +24,7 @@ class IndoorApplication : Application() {
         // Change your credentials below to have access to locations from your account.
         // Make sure you have any locations created in cloud!
         // If you don't have your Estimote Cloud Account - go to https://cloud.estimote.com/ and create one :)
-        EstimoteSDK.initialize(applicationContext, !! YOUR APP ID HERE !! ,  !! YOUR APP TOKEN HERE !!)
+        EstimoteSDK.initialize(applicationContext, "toms-location-odr" ,  "c76685df7fdccaec45b617c18cf50bdc")
 
     }
 

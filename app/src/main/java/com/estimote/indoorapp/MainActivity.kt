@@ -4,13 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.estimote.coresdk.observation.region.beacon.BeaconRegion
 import com.estimote.coresdk.service.BeaconManager
+import com.estimote.indoorapp.estimote.NearableID
+import com.estimote.indoorapp.estimote.Product
+import com.estimote.indoorapp.estimote.ShowroomManager
 import com.estimote.indoorsdk.algorithm.IndoorLocationManager
 
 import com.estimote.indoorsdk.cloud.Location
 import com.estimote.indoorsdk.common.helpers.EstimoteIndoorHelper
 import com.estimote.indoorsdk.view.IndoorLocationView
+import java.util.HashMap
 
 /**
  * Main view for indoor location
@@ -59,6 +64,23 @@ class MainActivity : AppCompatActivity() {
         // It also configures BeaconManager scanning with best scan times for indoor positioning.
         // CUSTOMIZATION - if you want to customize this setup, feel free to do it manually.
         EstimoteIndoorHelper.setupIndoorPositioning(beaconManager, indoorLocationManager, indoorLocationView)
+
+        val products = HashMap<NearableID, Product>()
+        products.put(NearableID("1b089cf2ccbf058b"), Product("Running Shoes",
+                "$49.99", "retail"))
+        products.put(NearableID("22aaab0c27180003"), Product("Bike",
+                "$99.99", "bike"))
+
+        showroomManager = ShowroomManager(this, products)
+        showroomManager.setListener(object : ShowroomManager.Listener() {
+            fun onProductPickup(product: Product) {
+
+            }
+
+            fun onProductPutdown(product: Product) {
+                //clear text?
+            }
+        })
     }
 
     private fun setupLocation() {
