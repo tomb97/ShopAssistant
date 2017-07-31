@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.TextView
 import com.estimote.coresdk.observation.region.beacon.BeaconRegion
 import com.estimote.coresdk.service.BeaconManager
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var location: Location
     private lateinit var beaconManager: BeaconManager
     private val ALL_ESTIMOTE_BEACONS_BEACON_REGION = BeaconRegion("rid", null, null, null)
+    private lateinit var showroomManager: ShowroomManager
 
     companion object {
         val intentKeyLocationId = "location_id"
@@ -72,15 +74,26 @@ class MainActivity : AppCompatActivity() {
                 "$99.99", "bike"))
 
         showroomManager = ShowroomManager(this, products)
-        showroomManager.setListener(object : ShowroomManager.Listener() {
-            fun onProductPickup(product: Product) {
+        showroomManager.create(this,products)
+        showroomManager.setListener(object : ShowroomManager.Listener{
 
+            override fun onProductPickup(product: Product) {
+                Log.d("test","picked up")
             }
 
-            fun onProductPutdown(product: Product) {
+            override fun onProductPutdown(product: Product) {
                 //clear text?
             }
         })
+//        showroomManager.setListener(object : ShowroomManager.Listener() {
+//            fun onProductPickup(product: Product) {
+//
+//            }
+//
+//            fun onProductPutdown(product: Product) {
+//                //clear text?
+//            }
+//        })
     }
 
     private fun setupLocation() {
