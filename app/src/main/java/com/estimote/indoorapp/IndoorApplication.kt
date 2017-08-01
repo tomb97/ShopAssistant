@@ -1,8 +1,13 @@
 package com.estimote.indoorapp
 
 import android.app.Application
+import android.util.Log
 import com.estimote.coresdk.common.config.EstimoteSDK
+import com.estimote.indoorapp.estimote.NearableID
+import com.estimote.indoorapp.estimote.Product
+import com.estimote.indoorapp.estimote.ShowroomManager
 import com.estimote.indoorsdk.cloud.Location
+import java.util.HashMap
 
 /**
  * START YOUR JOURNEY HERE!
@@ -13,6 +18,7 @@ class IndoorApplication : Application() {
     // This is map for holding all locations from your account.
     // You can move it somewhere else, but for sake of simplicity we put it in here.
     val locationsById: MutableMap<String, Location> = mutableMapOf()
+    private lateinit var showroomManager: ShowroomManager
 
     override fun onCreate() {
         super.onCreate()

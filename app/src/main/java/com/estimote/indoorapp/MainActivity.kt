@@ -65,32 +65,17 @@ class MainActivity : AppCompatActivity() {
         // Use helper below to quickly setup listeners between BeaconManager -> LocationManager -> LocationView
         // It also configures BeaconManager scanning with best scan times for indoor positioning.
         // CUSTOMIZATION - if you want to customize this setup, feel free to do it manually.
-        EstimoteIndoorHelper.setupIndoorPositioning(beaconManager, indoorLocationManager, indoorLocationView)
+       // EstimoteIndoorHelper.setupIndoorPositioning(beaconManager, indoorLocationManager, indoorLocationView)
 
-        val products = HashMap<NearableID, Product>()
-        products.put(NearableID("1b089cf2ccbf058b"), Product("Running Shoes",
-                "$49.99", "retail"))
-        products.put(NearableID("22aaab0c27180003"), Product("Bike",
-                "$99.99", "bike"))
-
-        showroomManager = ShowroomManager(this, products)
-        showroomManager.create(this,products)
-        showroomManager.setListener(object : ShowroomManager.Listener{
-
-            override fun onProductPickup(product: Product) {
-                Log.d("test","picked up")
-            }
-
-            override fun onProductPutdown(product: Product) {
-                //clear text?
-            }
-        })
-//        showroomManager.setListener(object : ShowroomManager.Listener() {
-//            fun onProductPickup(product: Product) {
+//        val products = HashMap<NearableID, Product>()
+//        showroomManager = ShowroomManager(this, products)
+//        showroomManager.setListener(object : ShowroomManager.Listener{
 //
+//            override fun onProductPickup(product: Product) {
+//                Log.d("test","picked up")
 //            }
 //
-//            fun onProductPutdown(product: Product) {
+//            override fun onProductPutdown(product: Product) {
 //                //clear text?
 //            }
 //        })

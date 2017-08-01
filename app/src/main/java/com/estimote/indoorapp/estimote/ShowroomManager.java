@@ -25,50 +25,26 @@ public class ShowroomManager {
     public ShowroomManager(Context context, final Map<NearableID, Product> products) {
         Log.d("test","work");
         beaconManager = new BeaconManager(context);
+        Log.d("test","work2");
         beaconManager.setNearableListener(new BeaconManager.NearableListener() {
             @Override
             public void onNearablesDiscovered(List<Nearable> list) {
+                Log.d("test","found");
                 for (Nearable nearable : list) {
-                    Log.d("near","found");
-                    NearableID nearableID = new NearableID(nearable.identifier);
-                    if (!products.keySet().contains(nearableID)) { continue; }
-
-                    boolean previousStatus = nearablesMotionStatus.containsKey(nearableID) && nearablesMotionStatus.get(nearableID);
-                    if (previousStatus != nearable.isMoving) {
-                        Product product = products.get(nearableID);
-                        if (nearable.isMoving) {
-                            listener.onProductPickup(product);
-                        } else {
-                            listener.onProductPutdown(product);
-                        }
-                        nearablesMotionStatus.put(nearableID, nearable.isMoving);
-                    }
-                }
-            }
-        });
-    }
-
-    public void create(Context context, final Map<NearableID, Product> products) {
-        Log.d("test","create");
-        beaconManager = new BeaconManager(context);
-        beaconManager.setNearableListener(new BeaconManager.NearableListener() {
-            @Override
-            public void onNearablesDiscovered(List<Nearable> list) {
-                for (Nearable nearable : list) {
-                    Log.d("near","found");
-                    NearableID nearableID = new NearableID(nearable.identifier);
-                    if (!products.keySet().contains(nearableID)) { continue; }
-
-                    boolean previousStatus = nearablesMotionStatus.containsKey(nearableID) && nearablesMotionStatus.get(nearableID);
-                    if (previousStatus != nearable.isMoving) {
-                        Product product = products.get(nearableID);
-                        if (nearable.isMoving) {
-                            listener.onProductPickup(product);
-                        } else {
-                            listener.onProductPutdown(product);
-                        }
-                        nearablesMotionStatus.put(nearableID, nearable.isMoving);
-                    }
+                    Log.d("near",nearable.identifier.toString());
+                //    NearableID nearableID = new NearableID(nearable.identifier);
+//                    if (!products.keySet().contains(nearableID)) { continue; }
+//
+//                    boolean previousStatus = nearablesMotionStatus.containsKey(nearableID) && nearablesMotionStatus.get(nearableID);
+//                    if (previousStatus != nearable.isMoving) {
+//                        Product product = products.get(nearableID);
+//                        if (nearable.isMoving) {
+//                            listener.onProductPickup(product);
+//                        } else {
+//                            listener.onProductPutdown(product);
+//                        }
+//                        nearablesMotionStatus.put(nearableID, nearable.isMoving);
+//                    }
                 }
             }
         });
